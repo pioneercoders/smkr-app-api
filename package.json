@@ -1,0 +1,19 @@
+{
+  "name": "curdapp",
+  "version": "1.0.0",
+  "description": "curd appliaction with node and express",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "codingkrishna",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.15.4",
+    "mongodb-data-api": "^0.4.0",
+    "multer": "^1.3.0"
+  }
+}
