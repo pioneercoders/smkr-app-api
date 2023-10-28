@@ -68,7 +68,7 @@ app.get('/jobs', function (req, res) {
 
 
 
-app.get('/contacts', function (req, res) {
+app.get('/create-contact', function (req, res) {
    api
    .insertOne({
      dataSource: 'pc-cluster',
