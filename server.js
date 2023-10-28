@@ -22,7 +22,7 @@ app.get('/index.html', function (req, res) {
    res.sendFile( __dirname + "/" + "index.html" );
 })
 
-app.post('/create-job', function (req, res) {
+app.get('/create-job', function (req, res) {
    api
    .insertOne({
      dataSource: 'pc-cluster',
