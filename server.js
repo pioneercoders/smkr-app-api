@@ -5,6 +5,7 @@ var app = express();
 var { createMongoDBDataAPI } = require('mongodb-data-api');
 var cors = require('cors');
 app.use(cors());
+app.options('*', cors());
 
 app.use( bodyParser.json() );
 app.use(express.static('public'));
