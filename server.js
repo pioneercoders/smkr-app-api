@@ -50,7 +50,7 @@ app.get('/create-job', function (req, res) {
    })
 })
 
-app.get('/jobslist', function (req, res) {
+app.get('/job-list', function (req, res) {
    api.$$action('find', {
       dataSource: 'pc-cluster',
       database: 'smkr_db',
@@ -92,7 +92,7 @@ app.get('/create-contact', function (req, res) {
    })
 })
 
-app.get('/contactslist', function (req, res) {
+app.get('/contact-list', function (req, res) {
    api.$$action('find', {
       dataSource: 'pc-cluster',
       database: 'smkr_db',
