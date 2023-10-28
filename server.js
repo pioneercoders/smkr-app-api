@@ -1,14 +1,17 @@
 var fs = require("fs");
 var express = require('express');
 var bodyParser = require('body-parser');
+const url = require('url');
 var app = express();
 var { createMongoDBDataAPI } = require('mongodb-data-api');
 var cors = require('cors');
 app.use(cors());
 app.options('*', cors());
 
-app.use( bodyParser.json() );
+// app.use( bodyParser.json() );
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 const api = createMongoDBDataAPI({
    apiKey: 'lr6gxmzJ2BgOxwdfH1x0t5AHAwBSXUjUoZDcN3s3FJmVZVgZH2lpaDzKyaXerxVj',
@@ -65,17 +68,17 @@ app.get('/jobs', function (req, res) {
 
 
 
-app.post('/contacts', function (req, res) {
+app.get('/contacts', function (req, res) {
    api
    .insertOne({
      dataSource: 'pc-cluster',
      database: 'smkr_db',
      collection: 'contacts',
      document: {
-         name: req.body.name,
-         mobile: req.body.mobile,
-         email: req.body.email,
-         message: req.body.message
+         name: req.query.name,
+         mobile: req.query.mobile,
+         email: req.query.email,
+         message: req.query.message
      }
    })
    .then((result) => {
@@ -89,7 +92,7 @@ app.post('/contacts', function (req, res) {
    })
 })
 
-app.get('/contacts', function (req, res) {
+app.get('/contactslist', function (req, res) {
    api.$$action('find', {
       dataSource: 'pc-cluster',
       database: 'smkr_db',
