@@ -22,21 +22,21 @@ app.get('/index.html', function (req, res) {
    res.sendFile( __dirname + "/" + "index.html" );
 })
 
-app.post('/jobs', function (req, res) {
+app.post('/create-job', function (req, res) {
    api
    .insertOne({
      dataSource: 'pc-cluster',
      database: 'smkr_db',
      collection: 'jobs',
      document: {
-         reqId: req.body.reqId,
-         title: req.body.title,
-         experience: req.body.experience,
-         noticePeriod: req.body.noticePeriod,
-         academics: req.body.academics,
-         location: req.body.location,
-         skills: req.body.skills,
-         jobDescription: req.body.jobDescription
+         reqId: req.query.reqId,
+         title: req.query.title,
+         experience: req.query.experience,
+         noticePeriod: req.query.noticePeriod,
+         academics: req.query.academics,
+         location: req.query.location,
+         skills: req.query.skills,
+         jobDescription: req.query.jobDescription.split(",")
      }
    })
    .then((result) => {
@@ -50,7 +50,7 @@ app.post('/jobs', function (req, res) {
    })
 })
 
-app.get('/jobs', function (req, res) {
+app.get('/jobslist', function (req, res) {
    api.$$action('find', {
       dataSource: 'pc-cluster',
       database: 'smkr_db',
