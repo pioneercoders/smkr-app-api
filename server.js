@@ -7,6 +7,7 @@ var { createMongoDBDataAPI } = require('mongodb-data-api');
 var cors = require('cors');
 app.use(cors());
 app.options('*', cors());
+var sendEmail = require("./email");
 
 // app.use( bodyParser.json() );
 app.use(express.static('public'));
@@ -69,20 +70,22 @@ app.get('/job-list', function (req, res) {
 
 
 app.get('/create-contact', function (req, res) {
+   let contact =  {
+      name: req.query.name,
+      mobile: req.query.mobile,
+      email: req.query.email,
+      message: req.query.message
+  };
    api
    .insertOne({
      dataSource: 'pc-cluster',
      database: 'smkr_db',
      collection: 'contacts',
-     document: {
-         name: req.query.name,
-         mobile: req.query.mobile,
-         email: req.query.email,
-         message: req.query.message
-     }
+     document: contact
    })
    .then((result) => {
      console.log(result.insertedId);
+     sendEmail(contact);
      res.writeHead(200, {'Content-Type': 'application/json'});
      res.end(JSON.stringify(result));
    }).catch(err => {
