@@ -16,9 +16,9 @@ module.exports = function sendEmail(contact) {
     // Define the email data
     const mailOptions = {
         from: 'dev4naveen@gmail.com', // Sender address
-        to: contact.email, // Recipient's email address
+        to: 'sunilchowdary35190@gmail.com', // Recipient's email address
         subject: 'New Contact For SMKR', // Email subject
-        text: `New contact request recived from: ${contact.name} with mobile: ${contact.mobile} and Message: ${contact.message}, please take a look.` // Email content
+        text: `New contact request recived from: ${contact.name} with Email:${contact.email } and mobile: ${contact.mobile} and Message: ${contact.message}, please take a look.` // Email content
     };
 
     // Send the email
